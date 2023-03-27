@@ -17,14 +17,14 @@ function mdLinks(rawPath: string, options: MDOptions = { validate: false, stats:
     return Promise.reject(new Error('The given path does not exist'));
   }
 
-  const rawFilesPaths = isDirectory(userPath) ? getFilesFromDirectory(userPath) : [userPath];
-  const filesPaths = rawFilesPaths.filter(isMdFile);
+  const allFilesInDirectory = isDirectory(userPath) ? getFilesFromDirectory(userPath) : [userPath];
+  const mdFilesInDirectory = allFilesInDirectory.filter(isMdFile);
 
-  if (filesPaths.length === 0) {
+  if (mdFilesInDirectory.length === 0) {
     return Promise.reject(new Error('No .md files were found in the given path'));
   }
 
-  const resultPromises = filesPaths.map((filePath) => extractLinksInfoFromPath(filePath, options));
+  const resultPromises = mdFilesInDirectory.map((filePath) => extractLinksInfoFromPath(filePath, options));
 
   return Promise.all(resultPromises).then((links) => {
     const allLinks = links.flat();

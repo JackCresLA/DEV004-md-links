@@ -1,0 +1,11 @@
+{
+  "transform": {
+    "^.+\\.(t|j)s$": [
+      "esbuild-jest",
+      {
+        "sourcemap": true,
+        "target": "es2015"
+      }
+    ]
+  }
+}

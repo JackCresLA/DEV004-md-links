@@ -65,8 +65,8 @@ export function isMdFile(path: string) {
 
 export function isValidateOption(
   options: MDOptions,
-  allLinks: (BaseLink | ValidatedLink)[]
-): allLinks is ValidatedLink[] {
+  _allLinks: (BaseLink | ValidatedLink)[]
+): _allLinks is ValidatedLink[] {
   return !!options.validate;
 }
 
